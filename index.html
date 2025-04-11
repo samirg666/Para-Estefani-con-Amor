@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Estefani, Mi Sol</title>
+    <style>
+        :root {
+            --color-primario: #FFA500;
+            --color-secundario: #FF8C00;
+            --color-terciario: #FFD700;
+            --color-dorado: #fffac2;
+            --color-fondo: #1a0d00;
+            --color-texto: #ffffff;
+            --color-coral: #FF7F50;
+            --color-naranja-claro: #FFE5B4;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap');
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-texto);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, var(--color-fondo), #3a1f00);
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        .estrellas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .estrella {
+            position: absolute;
+            background-color: var(--color-terciario);
+            border-radius: 50%;
+            animation: brillar 3s infinite alternate;
+        }
+        
+        .corazon {
+            position: absolute;
+            color: var(--color-coral);
+            font-size: 1.5em;
+            animation: flotar 5s linear infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+        
+        @keyframes brillar {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.9; }
+        }
+        
+        @keyframes flotar {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            color: var(--color-terciario);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+            background: linear-gradient(to right, var(--color-primario), var(--color-coral));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .frase-container {
+            background: rgba(26, 13, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 165, 0, 0.5);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.2);
+            max-width: 600px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+        
+        .frase-container:hover {
+            box-shadow: 0 8px 30px rgba(255, 140, 0, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        #frase {
+            font-size: 1.8em;
+            line-height: 1.4;
+            font-style: italic;
+            color: var(--color-texto);
+            transition: opacity 0.5s ease;
+            padding: 15px;
+            font-weight: 500;
+        }
+        
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, var(--color-primario), var(--color-coral));
+            border: none;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+            font-weight: 600;
+            min-width: 160px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--color-coral), var(--color-primario));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 140, 0, 0.5);
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-frase {
+            background: linear-gradient(45deg, var(--color-terciario), #ffcc00);
+        }
+        
+        .btn-playlist {
+            background: linear-gradient(45deg, #ff8c00, #ff6b00);
+        }
+        
+        .mensaje-final {
+            margin-top: 40px;
+            font-size: 1.3em;
+            color: var(--color-terciario);
+            font-style: italic;
+            opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 165, 0, 0.1);
+            display: inline-block;
+        }
+        
+        .atardecer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, rgba(26, 13, 0, 1), rgba(255, 140, 0, 0.3), transparent);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="estrellas" id="estrellas"></div>
+    <div class="atardecer"></div>
+    <div id="corazones"></div>
+    
+    <div class="container">
+        <h1>Para Estefani, Mi Sol</h1>
+        
+        <div class="frase-container">
+            <div id="frase"></div>
+        </div>
+        
+        <div class="btn-container">
+            <button class="btn btn-frase" id="cambiar-frase">Nueva Frase</button>
+            <button class="btn btn-playlist" id="ir-playlist">Nuestra Playlist</button>
+        </div>
+        
+        <div class="mensaje-final">
+            Eres el atardecer más bello de mi vida, Estefani 🧡
+        </div>
+    </div>
+
+    <script>
+        // Frases ampliadas con más romanticismo
+        const frases = [
+            "Estefani, cada momento a tu lado es como un atardecer lleno de colores: cálido, brillante e inolvidable",
+            "Eres la luz que ilumina mis días y el fuego que enciende mi corazón",
+            "El naranja no sería el mismo sin ti, porque tú le das vida a todo lo que tocas",
+            "Si el amor tuviera un color, sería el naranja, como la pasión que siento por ti",
+            "Eres mi sol en los días grises y mi llamarada en las noches frías. Te amo, Estefani",
+            "Contigo, hasta lo ordinario se vuelve extraordinario",
+            "Tu amor es como el sol: me da vida, me calienta y hace crecer todo lo bueno en mí",
+            "Si pudiera guardar atardeceres en un frasco, elegiría todos los que hemos compartido",
+            "Eres el sueño que mi corazón no deja de soñar...",
+            "Amo la manera en que el universo conspiró para unirnos",
+            "Eres mi hoy y todos mis mañanas",
+            "Contigo aprendí que el amor no tiene límites ni final",
+            "Como el naranja en el atardecer, tu amor pinta mis días con magia",
+            "Estefani, eres la razón por la que creo en los milagros",
+            "Tus ojos brillan más que cualquier estrella en el cielo",
+            "En un mundo de colores, tú eres mi naranja favorito",
+            "El amor que siento por ti brilla más intenso que el sol al atardecer",
+            "Si besarte fuera un color, sería naranja: dulce, cálido y lleno de pasión",
+            "Eres la melodía que mi corazón repite sin cesar",
+            "Nuestro amor es como el mejor atardecer: nunca quiero que se acabe",
+            "En el diccionario de mi vida, 'felicidad' tiene tu foto, Estefani",
+            "El día que te conocí, el sol decidió quedarse para siempre en mi corazón",
+            "Eres la dueña de mis sonrisas y la reina de mis pensamientos",
+            "Si el amor fuera una canción, la nuestra tendría tu nombre en el título",
+            "Contigo hasta el silencio es cómodo y las despedidas duelen menos",
+            "Eres mi lugar favorito en el mundo, aunque no tengas dirección",
+            "El tiempo vuela cuando estoy contigo, pero los recuerdos se quedan para siempre",
+            "Tu risa es mi sonido favorito, tu nombre mi palabra preferida",
+            "Amar es encontrar en otra persona todo lo que nos falta a nosotros mismos",
+            "Eres mi persona favorita en todos los lugares y en todos los tiempos",
+            "No necesito alas para volar, me basta con tu amor para sentirme en las nubes"
+        ];
+        
+        // Variables para control de animaciones
+        let animacionesActivas = [];
+        let intervaloFrases;
+        let intervaloCorazones;
+        
+        // Mostrar frase aleatoria optimizada
+        function mostrarFrase() {
+            const fraseAleatoria = frases[Math.floor(Math.random() * frases.length)];
+            const elementoFrase = document.getElementById('frase');
+            
+            elementoFrase.style.opacity = 0;
+            
+            setTimeout(() => {
+                elementoFrase.innerHTML = `"${fraseAleatoria}"`;
+                elementoFrase.style.opacity = 1;
+                
+                // Resaltar el nombre de Estefani en las frases
+                if (fraseAleatoria.includes("Estefani")) {
+                    elementoFrase.innerHTML = elementoFrase.innerHTML.replace(
+                        /Estefani/g, 
+                        '<span style="color: var(--color-terciario); font-weight: bold;">Estefani</span>'
+                    );
+                }
+            }, 300);
+        }
+        
+        // Crear estrellas optimizadas
+        function crearEstrellas() {
+            const estrellas = document.getElementById('estrellas');
+            estrellas.innerHTML = '';
+            
+            for (let i = 0; i < 100; i++) {
+                const estrella = document.createElement('div');
+                estrella.className = 'estrella';
+                const size = Math.random() * 3 + 1;
+                estrella.style.width = `${size}px`;
+                estrella.style.height = `${size}px`;
+                estrella.style.left = `${Math.random() * 100}%`;
+                estrella.style.top = `${Math.random() * 100}%`;
+                estrella.style.opacity = Math.random();
+                estrella.style.animationDelay = `${Math.random() * 2}s`;
+                estrella.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                estrellas.appendChild(estrella);
+            }
+        }
+        
+        // Crear corazones flotantes
+        function crearCorazones() {
+            const corazones = document.getElementById('corazones');
+            const corazon = document.createElement('div');
+            corazon.className = 'corazon';
+            corazon.innerHTML = '🧡';
+            corazon.style.left = `${Math.random() * 100}%`;
+            corazon.style.fontSize = `${Math.random() * 20 + 10}px`;
+            corazon.style.animationDuration = `${Math.random() * 10 + 5}s`;
+            corazones.appendChild(corazon);
+            
+            // Eliminar el corazón después de que termine la animación
+            setTimeout(() => {
+                corazon.remove();
+            }, 10000);
+        }
+        
+        // Redirigir a la playlist
+        function irAPlaylist() {
+            window.open('https://youtube.com/playlist?list=PLGohJ16ImZK40hJWLOGru6sY2N70YpPDG', '_blank');
+        }
+        
+        // Limpiar animaciones
+        function limpiarAnimaciones() {
+            animacionesActivas.forEach(id => clearTimeout(id));
+            animacionesActivas = [];
+            clearInterval(intervaloCorazones);
+        }
+        
+        // Inicialización optimizada
+        function inicializar() {
+            crearEstrellas();
+            mostrarFrase();
+            
+            // Configurar intervalo con limpieza previa
+            if (intervaloFrases) clearInterval(intervaloFrases);
+            intervaloFrases = setInterval(mostrarFrase, 10000);
+            
+            // Iniciar lluvia de corazones
+            intervaloCorazones = setInterval(crearCorazones, 800);
+        }
+        
+        // Event listeners
+        document.getElementById('cambiar-frase').addEventListener('click', function() {
+            limpiarAnimaciones();
+            mostrarFrase();
+        });
+        
+        document.getElementById('ir-playlist').addEventListener('click', irAPlaylist);
+        
+        // Cargar la página
+        document.addEventListener('DOMContentLoaded', inicializar);
+        
+        // Limpiar al salir de la página
+        window.addEventListener('beforeunload', limpiarAnimaciones);
+    </script>
+</body>
+</html>
